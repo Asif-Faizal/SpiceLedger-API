@@ -1,0 +1,17 @@
+info:
+  name: Get Merchant Info
+  type: http
+  seq: 7
+
+http:
+  method: GET
+  url: "{{baseUrl}}/accounts/merchant-info"
+  auth:
+    type: bearer
+    token: "{{merchantAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

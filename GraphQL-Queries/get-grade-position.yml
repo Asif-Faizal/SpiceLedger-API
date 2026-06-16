@@ -1,0 +1,39 @@
+info:
+  name: Get Grade Position
+  type: graphql
+  seq: 2
+
+graphql:
+  method: POST
+  url: "{{graphqlUrl}}"
+  body:
+    query: |
+      query GetGradePosition($spiceGradeId: ID!) {
+        getGradePosition(spiceGradeId: $spiceGradeId) {
+          userId
+          spiceGradeId
+          totalQty
+          totalCost
+          avgCost
+          todayPrice
+          realizedPnL
+          unrealizedPnL
+          updatedAt
+        }
+      }
+    variables: |
+      {
+        "spiceGradeId": "{{gradeId}}"
+      }
+  auth:
+    type: bearer
+    token: "{{merchantAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Get portfolio position for a spice grade. Run Login Merchant first.

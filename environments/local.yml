@@ -1,0 +1,43 @@
+name: local
+
+variables:
+  - name: proxyUrl
+    value: http://localhost:8080
+  - name: baseUrl
+    value: http://localhost:8080/rest
+  - name: graphqlUrl
+    value: http://localhost:8080/graphql
+  - name: restDirectUrl
+    value: http://localhost:8082
+  - name: graphqlDirectUrl
+    value: http://localhost:8081
+  - name: basicAuthUser
+    value: admin
+  - name: basicAuthPass
+    value: secret123
+  - name: adminEmail
+    value: admin@spice.com
+  - name: merchantEmail
+    value: merchant@spice.com
+  - name: password
+    value: secret123
+  - name: deviceId
+    value: bruno-dev-device-001
+  - name: adminAccountId
+    value: acc_admin_00000000000000001
+  - name: merchantAccountId
+    value: acc_merchant_00000000000001
+  - name: productId
+    value: prd_turmeric_00000000000001
+  - name: pepperProductId
+    value: prd_pepper_000000000000001
+  - name: gradeId
+    value: grd_turmeric_a_000000000001
+  - name: pepperGradeId
+    value: grd_pepper_a_00000000000001
+  - name: adminAccessToken
+    value: ""
+  - name: merchantAccessToken
+    value: ""
+  - name: refreshToken
+    value: ""

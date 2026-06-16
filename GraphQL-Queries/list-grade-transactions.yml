@@ -1,0 +1,40 @@
+info:
+  name: List Grade Transactions
+  type: graphql
+  seq: 4
+
+graphql:
+  method: POST
+  url: "{{graphqlUrl}}"
+  body:
+    query: |
+      query ListGradeTransactions($spiceGradeId: ID!, $skip: Int, $take: Int) {
+        listGradeTransactions(spiceGradeId: $spiceGradeId, skip: $skip, take: $take) {
+          id
+          userId
+          spiceGradeId
+          type
+          quantity
+          price
+          tradeDate
+          createdAt
+        }
+      }
+    variables: |
+      {
+        "spiceGradeId": "{{gradeId}}",
+        "skip": 0,
+        "take": 10
+      }
+  auth:
+    type: bearer
+    token: "{{merchantAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  List transactions for a specific grade.

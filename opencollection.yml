@@ -1,8 +1,11 @@
 opencollection: 1.0.0
 
 info:
-  name: Sample API Collection
+  name: SpiceLedger API
+  description: Complete REST and GraphQL API documentation for SpiceLedger Backend
+
 bundled: false
+
 extensions:
   bruno:
     ignore:

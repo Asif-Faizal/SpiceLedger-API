@@ -1,0 +1,43 @@
+info:
+  name: Create Daily Price
+  type: graphql
+  seq: 3
+
+graphql:
+  method: POST
+  url: "{{graphqlUrl}}"
+  body:
+    query: |
+      mutation CreateDailyPrice($input: CreateDailyPriceInput!) {
+        createDailyPrice(input: $input) {
+          id
+          productId
+          gradeId
+          price
+          date
+          time
+        }
+      }
+    variables: |
+      {
+        "input": {
+          "id": "",
+          "productId": "{{productId}}",
+          "gradeId": "{{gradeId}}",
+          "price": 125.5,
+          "date": "2026-06-14",
+          "time": "10:00:00"
+        }
+      }
+  auth:
+    type: bearer
+    token: "{{adminAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create or update a daily price. Requires admin JWT.

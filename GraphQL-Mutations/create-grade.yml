@@ -1,0 +1,41 @@
+info:
+  name: Create Grade
+  type: graphql
+  seq: 2
+
+graphql:
+  method: POST
+  url: "{{graphqlUrl}}"
+  body:
+    query: |
+      mutation CreateGrade($input: CreateGradeInput!) {
+        createGrade(input: $input) {
+          id
+          productId
+          name
+          description
+          status
+        }
+      }
+    variables: |
+      {
+        "input": {
+          "id": "",
+          "productId": "{{productId}}",
+          "name": "Grade A",
+          "description": "Premium quality",
+          "status": "active"
+        }
+      }
+  auth:
+    type: bearer
+    token: "{{adminAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create or update a grade. Requires admin JWT.

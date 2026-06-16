@@ -1,0 +1,46 @@
+info:
+  name: Admin Dashboard
+  type: graphql
+  seq: 6
+
+graphql:
+  method: POST
+  url: "{{graphqlUrl}}"
+  body:
+    query: |
+      query AdminDashboard {
+        adminDashboard {
+          totalUsers
+          totalProducts
+          totalTransactions
+          totalVolume
+          recentTransactions {
+            id
+            userId
+            spiceGradeId
+            type
+            quantity
+            price
+            tradeDate
+            createdAt
+          }
+          topProducts {
+            name
+            volume
+          }
+        }
+      }
+    variables: |
+      {}
+  auth:
+    type: bearer
+    token: "{{adminAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Admin dashboard metrics. Run Login Admin first.

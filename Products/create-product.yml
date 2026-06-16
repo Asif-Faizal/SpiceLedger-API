@@ -1,0 +1,30 @@
+info:
+  name: Create Product
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/products"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "name": "Cardamom",
+        "category": "spice",
+        "description": "Green cardamom pods",
+        "status": "active"
+      }
+  auth:
+    type: bearer
+    token: "{{adminAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,31 @@
+info:
+  name: Create Daily Price
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/daily-prices"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "product_id": "{{productId}}",
+        "grade_id": "{{gradeId}}",
+        "price": 125.50,
+        "date": "2026-06-16",
+        "time": "10:00:00"
+      }
+  auth:
+    type: bearer
+    token: "{{adminAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

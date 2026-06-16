@@ -1,0 +1,32 @@
+info:
+  name: Create Merchant Details
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/accounts/merchant-details"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "account_id": "{{merchantAccountId}}",
+        "phone_number": "9876543210",
+        "address": "456 Market Road",
+        "city": "Cochin",
+        "state": "Kerala",
+        "pincode": "682002"
+      }
+  auth:
+    type: bearer
+    token: "{{merchantAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

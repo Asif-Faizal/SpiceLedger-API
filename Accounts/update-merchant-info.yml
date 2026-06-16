@@ -1,0 +1,31 @@
+info:
+  name: Update Merchant Info
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{baseUrl}}/accounts/merchant-info"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "id": "det_merchant_00000000000001",
+        "phone_number": "1234567890",
+        "address": "123 Spice Market",
+        "city": "Cochin",
+        "state": "Kerala",
+        "pincode": "682001"
+      }
+  auth:
+    type: bearer
+    token: "{{merchantAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

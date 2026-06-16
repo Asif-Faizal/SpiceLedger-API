@@ -1,0 +1,39 @@
+info:
+  name: Login Admin
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/accounts/login"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "email": "{{adminEmail}}",
+        "password": "{{password}}",
+        "device_id": "{{deviceId}}"
+      }
+  auth:
+    type: basic
+    username: "{{basicAuthUser}}"
+    password: "{{basicAuthPass}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const data = res.getBody();
+        if (data?.data?.access_token) {
+          bru.setEnvVar('adminAccessToken', data.data.access_token);
+          bru.setEnvVar('refreshToken', data.data.refresh_token);
+        }

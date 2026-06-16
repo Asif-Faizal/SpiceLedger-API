@@ -1,0 +1,30 @@
+info:
+  name: Create Grade
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/grades"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "id": "",
+        "product_id": "{{productId}}",
+        "name": "Grade A",
+        "description": "Premium grade",
+        "status": "active"
+      }
+  auth:
+    type: bearer
+    token: "{{adminAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

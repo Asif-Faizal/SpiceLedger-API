@@ -1,0 +1,28 @@
+info:
+  name: Refresh Token
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/accounts/refresh"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "refresh_token": "{{refreshToken}}",
+        "device_id": "{{deviceId}}"
+      }
+  auth:
+    type: basic
+    username: "{{basicAuthUser}}"
+    password: "{{basicAuthPass}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,22 @@
+info:
+  name: List Grades
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/grades/"
+  params:
+    - name: product_id
+      value: "{{productId}}"
+      type: query
+  auth:
+    type: basic
+    username: "{{basicAuthUser}}"
+    password: "{{basicAuthPass}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

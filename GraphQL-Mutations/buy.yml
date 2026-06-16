@@ -1,0 +1,41 @@
+info:
+  name: Buy
+  type: graphql
+  seq: 4
+
+graphql:
+  method: POST
+  url: "{{graphqlUrl}}"
+  body:
+    query: |
+      mutation Buy($spiceGradeId: ID!, $quantity: Float!, $price: Float!, $tradeDate: String) {
+        buy(spiceGradeId: $spiceGradeId, quantity: $quantity, price: $price, tradeDate: $tradeDate) {
+          id
+          userId
+          spiceGradeId
+          type
+          quantity
+          price
+          tradeDate
+          createdAt
+        }
+      }
+    variables: |
+      {
+        "spiceGradeId": "{{gradeId}}",
+        "quantity": 5.0,
+        "price": 120.0,
+        "tradeDate": "2026-06-14"
+      }
+  auth:
+    type: bearer
+    token: "{{merchantAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Execute a buy trade. Run Login Merchant first.

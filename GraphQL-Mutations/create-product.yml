@@ -1,0 +1,41 @@
+info:
+  name: Create Product
+  type: graphql
+  seq: 1
+
+graphql:
+  method: POST
+  url: "{{graphqlUrl}}"
+  body:
+    query: |
+      mutation CreateProduct($input: CreateProductInput!) {
+        createProduct(input: $input) {
+          id
+          name
+          category
+          description
+          status
+        }
+      }
+    variables: |
+      {
+        "input": {
+          "id": "",
+          "name": "Cardamom",
+          "category": "spice",
+          "description": "Green cardamom pods",
+          "status": "active"
+        }
+      }
+  auth:
+    type: bearer
+    token: "{{adminAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Create or update a product. Requires admin JWT.

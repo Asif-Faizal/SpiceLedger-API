@@ -1,0 +1,39 @@
+info:
+  name: List All Transactions
+  type: graphql
+  seq: 5
+
+graphql:
+  method: POST
+  url: "{{graphqlUrl}}"
+  body:
+    query: |
+      query ListTransactions($skip: Int, $take: Int) {
+        listTransactions(skip: $skip, take: $take) {
+          id
+          userId
+          spiceGradeId
+          type
+          quantity
+          price
+          tradeDate
+          createdAt
+        }
+      }
+    variables: |
+      {
+        "skip": 0,
+        "take": 10
+      }
+  auth:
+    type: bearer
+    token: "{{merchantAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  List transactions for authenticated user.
