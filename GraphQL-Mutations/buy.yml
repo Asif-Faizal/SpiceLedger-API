@@ -37,5 +37,4 @@ settings:
   followRedirects: true
   maxRedirects: 5
 
-docs: |-
-  Execute a buy trade. Run Login Merchant first.
+docs: Execute a buy trade. Run Login Merchant first.

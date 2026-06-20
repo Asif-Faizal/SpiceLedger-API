@@ -18,7 +18,7 @@ If only GraphQL requests appear, close the collection completely and reopen it f
 
 | Variable | Default |
 |----------|---------|
-| `proxyUrl` | `http://localhost:8080` |
+| `gatewayUrl` | `http://localhost:8080` |
 | `baseUrl` | `http://localhost:8080/rest` |
 | `graphqlUrl` | `http://localhost:8080/graphql` |
 
@@ -26,7 +26,7 @@ If only GraphQL requests appear, close the collection completely and reopen it f
 
 | Folder | Endpoints |
 |--------|-----------|
-| **Health** | Proxy, REST, GraphQL health checks |
+| **Health** | Gateway liveness/ready, REST health, GraphQL health (`__typename`) |
 | **Auth** | Login (admin/merchant), refresh, logout |
 | **Accounts** | Email check, CRUD, merchant info |
 | **Products** | Create, list |

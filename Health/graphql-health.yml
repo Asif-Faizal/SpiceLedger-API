@@ -1,11 +1,16 @@
 info:
   name: GraphQL Health
-  type: http
+  type: graphql
   seq: 4
 
-http:
-  method: GET
-  url: "{{graphqlDirectUrl}}/health"
+graphql:
+  method: POST
+  url: "{{graphqlUrl}}"
+  body:
+    query: |
+      query Health {
+        __typename
+      }
   auth: inherit
 
 settings:

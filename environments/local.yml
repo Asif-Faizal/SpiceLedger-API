@@ -1,16 +1,12 @@
 name: local
 
 variables:
-  - name: proxyUrl
+  - name: gatewayUrl
     value: http://localhost:8080
   - name: baseUrl
     value: http://localhost:8080/rest
   - name: graphqlUrl
     value: http://localhost:8080/graphql
-  - name: restDirectUrl
-    value: http://localhost:8082
-  - name: graphqlDirectUrl
-    value: http://localhost:8081
   - name: basicAuthUser
     value: admin
   - name: basicAuthPass

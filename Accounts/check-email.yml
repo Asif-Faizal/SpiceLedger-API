@@ -5,10 +5,10 @@ info:
 
 http:
   method: GET
-  url: "{{baseUrl}}/accounts/check-email?email=test@gmail.com"
+  url: "{{baseUrl}}/accounts/check-email?email=merchant@spice.com"
   params:
     - name: email
-      value: test@gmail.com
+      value: merchant@spice.com
       type: query
   auth:
     type: basic
