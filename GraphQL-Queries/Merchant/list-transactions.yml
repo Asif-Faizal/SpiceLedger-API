@@ -1,5 +1,5 @@
 info:
-  name: List Grade Transactions
+  name: List All Transactions
   type: graphql
   seq: 4
 
@@ -8,8 +8,8 @@ graphql:
   url: "{{graphqlUrl}}"
   body:
     query: |
-      query ListGradeTransactions($spiceGradeId: ID!, $skip: Int, $take: Int) {
-        listGradeTransactions(spiceGradeId: $spiceGradeId, skip: $skip, take: $take) {
+      query ListTransactions($skip: Int, $take: Int) {
+        listTransactions(skip: $skip, take: $take) {
           id
           userId
           spiceGradeId
@@ -22,7 +22,6 @@ graphql:
       }
     variables: |
       {
-        "spiceGradeId": "{{gradeId}}",
         "skip": 0,
         "take": 10
       }
@@ -37,4 +36,7 @@ settings:
   maxRedirects: 5
 
 docs: |-
-  List transactions for a specific grade.
+  Paginated trade history across all grades for the authenticated merchant.
+  Admin JWT with empty user_id lists all users (admin dashboard use case).
+
+  **gRPC:** MarketService.ListTransactions

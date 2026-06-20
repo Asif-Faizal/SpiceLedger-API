@@ -38,4 +38,6 @@ settings:
   maxRedirects: 5
 
 docs: |-
-  Create or update a product. Requires admin JWT.
+  Create or update a product. Admin JWT required.
+
+  **gRPC:** ControlService.CreateOrUpdateProduct

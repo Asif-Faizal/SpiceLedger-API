@@ -1,15 +1,15 @@
 info:
-  name: Buy
+  name: Sell
   type: graphql
-  seq: 4
+  seq: 2
 
 graphql:
   method: POST
   url: "{{graphqlUrl}}"
   body:
     query: |
-      mutation Buy($spiceGradeId: ID!, $quantity: Float!, $price: Float!, $tradeDate: String) {
-        buy(spiceGradeId: $spiceGradeId, quantity: $quantity, price: $price, tradeDate: $tradeDate) {
+      mutation Sell($spiceGradeId: ID!, $quantity: Float!, $price: Float!, $tradeDate: String) {
+        sell(spiceGradeId: $spiceGradeId, quantity: $quantity, price: $price, tradeDate: $tradeDate) {
           id
           userId
           spiceGradeId
@@ -23,8 +23,8 @@ graphql:
     variables: |
       {
         "spiceGradeId": "{{gradeId}}",
-        "quantity": 5.0,
-        "price": 120.0,
+        "quantity": 1.0,
+        "price": 130.0,
         "tradeDate": "2026-06-14"
       }
   auth:
@@ -37,4 +37,7 @@ settings:
   followRedirects: true
   maxRedirects: 5
 
-docs: Execute a buy trade. Run Login Merchant first.
+docs: |-
+  Execute a FIFO sell trade for the authenticated merchant.
+
+  **gRPC:** MarketService.Sell

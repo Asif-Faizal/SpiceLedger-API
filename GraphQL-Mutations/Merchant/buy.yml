@@ -1,15 +1,15 @@
 info:
-  name: List All Transactions
+  name: Buy
   type: graphql
-  seq: 5
+  seq: 1
 
 graphql:
   method: POST
   url: "{{graphqlUrl}}"
   body:
     query: |
-      query ListTransactions($skip: Int, $take: Int) {
-        listTransactions(skip: $skip, take: $take) {
+      mutation Buy($spiceGradeId: ID!, $quantity: Float!, $price: Float!, $tradeDate: String) {
+        buy(spiceGradeId: $spiceGradeId, quantity: $quantity, price: $price, tradeDate: $tradeDate) {
           id
           userId
           spiceGradeId
@@ -22,8 +22,10 @@ graphql:
       }
     variables: |
       {
-        "skip": 0,
-        "take": 10
+        "spiceGradeId": "{{gradeId}}",
+        "quantity": 5.0,
+        "price": 120.0,
+        "tradeDate": "2026-06-14"
       }
   auth:
     type: bearer
@@ -36,4 +38,6 @@ settings:
   maxRedirects: 5
 
 docs: |-
-  List transactions for authenticated user.
+  Execute a buy trade for the authenticated merchant.
+
+  **gRPC:** MarketService.Buy

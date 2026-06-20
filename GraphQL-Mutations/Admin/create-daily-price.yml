@@ -40,4 +40,6 @@ settings:
   maxRedirects: 5
 
 docs: |-
-  Create or update a daily price. Requires admin JWT.
+  Publish or update daily price for a grade. Admin JWT required.
+
+  **gRPC:** ControlService.CreateOrUpdateDailyPrice

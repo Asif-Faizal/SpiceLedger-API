@@ -1,0 +1,115 @@
+info:
+  name: Merchant Dashboard
+  type: graphql
+  seq: 1
+
+graphql:
+  method: POST
+  url: "{{graphqlUrl}}"
+  body:
+    query: |
+      query MerchantDashboard($days: Int) {
+        merchantDashboard(days: $days) {
+          summary {
+            portfolioValue
+            totalCost
+            totalRealizedPnL
+            totalUnrealizedPnL
+            netPnL
+            openPositions
+            totalQuantityKg
+            tradesInPeriod
+            buyVolumeInPeriod
+            sellVolumeInPeriod
+          }
+          holdings {
+            spiceGradeId
+            productName
+            gradeName
+            quantity
+            avgCost
+            todayPrice
+            marketValue
+            costBasis
+            unrealizedPnL
+            unrealizedPnLPercent
+            realizedPnL
+            weightPercent
+          }
+          portfolioMix {
+            label
+            value
+            quantity
+          }
+          pnlTrend {
+            date
+            dailyRealizedPnL
+            cumulativeRealizedPnL
+          }
+          activityTrend {
+            date
+            buyQuantity
+            sellQuantity
+            buyCount
+            sellCount
+          }
+          recentTransactions {
+            id
+            userId
+            spiceGradeId
+            type
+            quantity
+            price
+            tradeDate
+            createdAt
+          }
+          insights {
+            kind
+            title
+            body
+            spiceGradeId
+            severity
+          }
+          movers {
+            spiceGradeId
+            productName
+            gradeName
+            todayPrice
+            previousPrice
+            changePercent
+            direction
+          }
+        }
+      }
+    variables: |
+      {
+        "days": 7
+      }
+  auth:
+    type: bearer
+    token: "{{merchantAccessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Merchant portfolio dashboard (JWT-scoped to authenticated merchant only).
+
+  **Auth:** Merchant Bearer — run Auth → Login Merchant first.
+
+  **Variable `days`:** Trend window for charts and period stats. Default 7, max 90.
+
+  **Resolver orchestration** (same pattern as adminDashboard):
+  1. `MarketService.GetHoldings` — enriched open positions
+  2. `MarketService.GetTradeStats` — trades/volume in period
+  3. `MarketService.GetRealizedPnLHistory` — daily realized P&L rows
+  4. `MarketService.GetTradeActivity` — buy/sell activity by day
+  5. `MarketService.GetPriceSnapshots` — day-over-day price movers for held grades
+  6. `MarketService.ListTransactions { take: 5 }` — recent trades for this merchant
+
+  GraphQL assembles summary, portfolio mix, trend series, insights, and movers in the resolver.
+
+  **Response envelope:** `{ success, message, data: { merchantDashboard: { ... } } }`

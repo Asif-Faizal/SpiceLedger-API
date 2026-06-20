@@ -32,8 +32,9 @@ If only GraphQL requests appear, close the collection completely and reopen it f
 | **Products** | Create, list |
 | **Grades** | Create, list by product |
 | **Daily Prices** | Create, list, today by grade/product |
-| **GraphQL Queries** | products, positions, transactions, admin dashboard (native GraphQL type) |
-| **GraphQL Mutations** | create product/grade/price, buy, sell (native GraphQL type) |
+| **Merchant** | Merchant dashboard (portfolio, charts, insights) |
+| **GraphQL Queries** | By use case: Admin, Catalog, Merchant |
+| **GraphQL Mutations** | By use case: Admin (catalog mgmt), Merchant (buy/sell) |
 
 ## Seed credentials
 
@@ -46,3 +47,21 @@ If only GraphQL requests appear, close the collection completely and reopen it f
 - List endpoints require trailing slashes: `/products/`, `/grades/`, `/daily-prices/`
 - GraphQL requires Bearer JWT — run login requests first
 - REST auto-injects Basic Auth when no Authorization header is sent
+
+## GraphQL folder layout
+
+```
+GraphQL-Queries/
+  Admin/          admin-dashboard
+  Catalog/        products
+  Merchant/       get-positions, get-grade-position, list-transactions, list-grade-transactions
+
+GraphQL-Mutations/
+  Admin/          create-product, create-grade, create-daily-price
+  Merchant/       buy, sell
+
+Merchant/         merchant-dashboard (full portfolio dashboard query)
+```
+
+Run **Auth → Login Merchant** before Merchant folder or GraphQL Merchant requests.
+Run **Auth → Login Admin** before Admin GraphQL requests.

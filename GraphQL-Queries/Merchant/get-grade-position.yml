@@ -1,15 +1,15 @@
 info:
-  name: Get All Positions
+  name: Get Grade Position
   type: graphql
-  seq: 3
+  seq: 2
 
 graphql:
   method: POST
   url: "{{graphqlUrl}}"
   body:
     query: |
-      query GetPositions {
-        getPositions {
+      query GetGradePosition($spiceGradeId: ID!) {
+        getGradePosition(spiceGradeId: $spiceGradeId) {
           userId
           spiceGradeId
           totalQty
@@ -22,7 +22,9 @@ graphql:
         }
       }
     variables: |
-      {}
+      {
+        "spiceGradeId": "{{gradeId}}"
+      }
   auth:
     type: bearer
     token: "{{merchantAccessToken}}"
@@ -34,4 +36,6 @@ settings:
   maxRedirects: 5
 
 docs: |-
-  Get all portfolio positions for authenticated merchant.
+  Single-grade position for the authenticated merchant.
+
+  **gRPC:** MarketService.GetGradePosition

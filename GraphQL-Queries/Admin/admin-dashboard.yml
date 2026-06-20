@@ -1,7 +1,7 @@
 info:
   name: Admin Dashboard
   type: graphql
-  seq: 6
+  seq: 1
 
 graphql:
   method: POST
@@ -44,3 +44,5 @@ settings:
 
 docs: |-
   Admin dashboard metrics. Run Login Admin first.
+
+  **gRPC:** GetSystemMetrics + GetMarketMetrics + ListTransactions (take 5, all users).

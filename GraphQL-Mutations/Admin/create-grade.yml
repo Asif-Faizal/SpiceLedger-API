@@ -23,7 +23,7 @@ graphql:
           "id": "",
           "productId": "{{productId}}",
           "name": "Grade A",
-          "description": "Premium quality",
+          "description": "Premium grade",
           "status": "active"
         }
       }
@@ -38,4 +38,6 @@ settings:
   maxRedirects: 5
 
 docs: |-
-  Create or update a grade. Requires admin JWT.
+  Create or update a grade under a product. Admin JWT required.
+
+  **gRPC:** ControlService.CreateOrUpdateGrade
